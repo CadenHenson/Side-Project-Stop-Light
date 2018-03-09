@@ -104,7 +104,9 @@ import pygame
 import sprite
 
 w = pygame.display.set_mode([1000,667])
-
+red = ((255, 0, 0))
+yellow = ((255, 255, 0))
+green = ((0, 255, 255))
 background = sprite.Sprite("StreetLight.jpg", 0, 0)
 car = sprite.Sprite("Car.png", 400, 100)
 drawing = True
@@ -112,6 +114,10 @@ while drawing:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             drawing = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+            x, y = pygame.mouse.get_pos()
+            if background.rect.collidepoint(x, y):
+                pygame.draw.circle(w, yellow,(500, 300), 7) 
     background.draw()
     car.draw()
     pygame.display.flip()
